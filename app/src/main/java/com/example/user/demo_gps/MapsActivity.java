@@ -9,9 +9,14 @@ import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +52,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double prev_lat = 0.0;
     double prev_lng = 0.0;
     private int start_stop_flag = 0; //start = 1, stop =0
+    private ListView mDrawerList;
+    private DrawerLayout mDrawerLayout;
+    private ArrayAdapter<String> mAdapter;
 
 
     @Override
@@ -57,6 +65,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
         mMap = ((SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map)).getMap();
+
+        // Navigation Drawer List View
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView)findViewById(R.id.navList);
+        addDrawerItems();
 
         //MapFragment mapFragment = (MapFragment) getFragmentManager()
         //     .findFragmentById(R.id.map);
@@ -171,6 +184,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }
     }
+
+    private void addDrawerItems() {
+        String[] osArray = { "Workout Log", "Statistics"};
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
+        mDrawerList.setAdapter(mAdapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MapsActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
 
     /**
