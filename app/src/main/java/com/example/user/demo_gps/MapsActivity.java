@@ -65,7 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         Toolbar top = (Toolbar) findViewById(R.id.toolbar);
 
-        //((AppCompatActivity)getActivity()).setSupportActionBar(top);
+        //getActivity().setSupportActionBar(top);
         top.setLogo(R.drawable.ic_launcher);
         top.setTitle("Walk-A-Lot");
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
