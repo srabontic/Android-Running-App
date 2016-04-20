@@ -16,6 +16,19 @@ import android.view.MenuItem;
 public class options_drawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Options Drawer: Rupesh
+     * Provides a navigation drawer, which allows for the user to access the Trip Log and Statistics page
+     * The navigation drawer is used in lieu of action bar buttons as buttons can be accidentally pressed
+     * when the user is hiking or running.
+     * The navigation drawer requires a deliberate action by the user to open.
+     */
+
+
+    /**
+     * onCreate method: initializes the navigation drawer as well as helper .xml files
+     * such as the navigation drawer header, action bar, and content.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +55,7 @@ public class options_drawer extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    // On back button press, navigation drawer closes
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -74,6 +88,8 @@ public class options_drawer extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    // Method handles the selection of the nav drawer options
+    // Will open statistics or trip log activities when clicked
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

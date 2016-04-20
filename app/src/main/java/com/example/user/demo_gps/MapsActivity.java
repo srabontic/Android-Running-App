@@ -63,8 +63,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        // Creation of main activity toolbar
+        // Must be linked in with Maps fragment
         Toolbar top = (Toolbar) findViewById(R.id.toolbar);
-
         //getActivity().setSupportActionBar(top);
         top.setLogo(R.drawable.ic_launcher);
         top.setTitle("Walk-A-Lot");
@@ -193,6 +194,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    /**
+     * Temporary addition of nav drawer items
+     * will be replaced with activities in drawer content xml.
+     */
     private void addDrawerItems() {
         String[] osArray = { "Workout Log", "Statistics"};
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
