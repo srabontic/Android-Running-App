@@ -53,7 +53,9 @@
         <activity
             android:name=".options_drawer"
             android:label="@string/title_activity_options_drawer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TripLog" />
+        <activity android:name=".Statistics"></activity>
     </application>
 
 </manifest>
