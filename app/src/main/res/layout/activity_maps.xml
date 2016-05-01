@@ -34,27 +34,33 @@
     android:background="@drawable/shadow"
     tools:context=".MainActivity">
 
+
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
+        android:theme="@style/MyActionBar"
         android:id="@+id/view">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/actionBarPopupTheme"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:theme="@style/MyActionBar"
+            app:popupTheme="@style/MyActionBar"
 
+            />
     </android.support.design.widget.AppBarLayout>
+
+
+
 
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="330dp"
+    android:layout_width="230dp"
     android:layout_height="230dp"
     android:clickable="true"
     tools:context="com.example.user.demo_gps.MapsActivity"
@@ -97,6 +103,8 @@
         android:textStyle="bold"
         android:layout_width="330dp"
         android:layout_height="30dp" />
+
+
     <TextView
         android:id="@+id/textView_Avgspeed"
         android:layout_below="@id/textView_speed"
@@ -108,9 +116,23 @@
         android:textStyle="bold"
         android:layout_width="330dp"
         android:layout_height="30dp" />
+
+
+    <TextView
+        android:id="@+id/textView_steps"
+        android:layout_below="@id/textView_Avgspeed"
+        android:textColor="@color/White"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/text_background"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_width="330dp"
+        android:layout_height="30dp" />
+
     <Button
         android:id="@+id/button_start_stop"
-        android:layout_below="@id/textView_Avgspeed"
+        android:layout_below="@id/textView_steps"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textColor="@color/White"

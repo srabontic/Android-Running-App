@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/popup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="Trip Summery"
+        android:textColor="@color/White"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/popup_distance"
+        android:layout_gravity="center"
+        android:background="@color/popup_text_background"
+        android:layout_below="@id/Title"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/popup_text"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/popup_duration"
+        android:layout_gravity="center"
+        android:background="@color/popup_text_background"
+        android:layout_below="@id/popup_distance"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/popup_text"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/popup_avgspeed"
+        android:layout_gravity="center"
+        android:background="@color/popup_text_background"
+        android:layout_below="@id/popup_duration"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/popup_text"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:textSize="15dp"
+        android:textStyle="bold"/>
+    
+    <Button
+        android:id="@+id/button_close"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/popup_text_background"
+        android:layout_below="@id/popup_avgspeed"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/popup_text"
+        android:text="Finish"/>
+
+
+</LinearLayout>
