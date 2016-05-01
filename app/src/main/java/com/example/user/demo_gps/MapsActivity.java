@@ -1,19 +1,24 @@
 package com.example.user.demo_gps;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,7 +43,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
 
     private GoogleMap mMap;
     protected LocationManager locationManager;
@@ -54,10 +59,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double prev_lat = 0.0;
     double prev_lng = 0.0;
     private int start_stop_flag = 0; //start = 1, stop =0
-    private ListView mDrawerList;
-    private DrawerLayout mDrawerLayout;
-    private ArrayAdapter<String> mAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +67,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Creation of main activity toolbar
         // Must be linked in with Maps fragment
         Toolbar top = (Toolbar) findViewById(R.id.toolbar);
-        //getActivity().setSupportActionBar(top);
+        //setSupportActionBar(top);
         top.setLogo(R.drawable.ic_launcher);
         top.setTitle("Walk-A-Lot");
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
         mMap = ((SupportMapFragment) getSupportFragmentManager()
@@ -76,9 +78,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         // Navigation Drawer List View
-        //mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //mDrawerList = (ListView)findViewById(R.id.navList);
-        //addDrawerItems();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, top, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         //MapFragment mapFragment = (MapFragment) getFragmentManager()
         //     .findFragmentById(R.id.map);
@@ -195,25 +202,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     /**
-     * Temporary addition of nav drawer items
-     * will be replaced with activities in drawer content xml.
-     */
-    private void addDrawerItems() {
-        String[] osArray = { "Workout Log", "Statistics"};
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
-        mDrawerList.setAdapter(mAdapter);
-
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MapsActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
-
-    /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
      * This is where we can add markers or lines, add listeners or move the camera. In this case,
@@ -240,4 +228,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return true;
     }
 
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        Toast.makeText(getApplicationContext(),
+                "YOU TOUCHED THE NAV DRAWER", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),
+                item.toString(), Toast.LENGTH_LONG).show();
+
+        if (id == R.id.Trip_Log) {
+            Toast.makeText(getApplicationContext(),
+                    "TRIP LOG", Toast.LENGTH_LONG).show();
+            Intent tlActivity= new Intent(this, TripLog.class);
+            startActivity(tlActivity);
+            return true;
+        } else if (id == R.id.Statistics) {
+            Toast.makeText(getApplicationContext(),
+                    "Statistics", Toast.LENGTH_LONG).show();
+            Intent sActivity= new Intent(this, Statistics.class);
+            startActivity(sActivity);
+            return true;
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }
