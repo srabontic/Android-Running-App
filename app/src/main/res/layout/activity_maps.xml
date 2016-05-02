@@ -156,18 +156,7 @@
         android:background="@android:color/transparent"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/tripLogText"
-        android:layout_alignStart="@+id/tripLogText" />
-
-
-    <!--
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:popupTheme="@style/MyActionBar"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/textView_duration"
-        android:layout_alignEnd="@+id/textView_duration" />
-        -->
+        android:layout_alignStart="@+id/tripLogText"
+        android:layout_alignLeft="@+id/tripLogText" />
 
 </RelativeLayout>
