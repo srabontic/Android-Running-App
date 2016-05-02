@@ -1,5 +1,6 @@
 package com.example.user.demo_gps;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -7,20 +8,25 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,20 +74,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         // Creation of main activity toolbar
         // Must be linked in with Maps fragment
-        Toolbar top = (Toolbar) findViewById(R.id.toolbar);
-        //getActivity().setSupportActionBar(top);
+        Toolbar top = (Toolbar) findViewById(R.id.view);
+        //top.setMenu();
         top.setLogo(R.drawable.ic_launcher);
         top.setTitle("Walk-A-Lot");
+        top.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(getApplicationContext(),
+                        "Contact Added", Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-        mMap = ((SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map)).getMap();
+        mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 
-
-        // Navigation Drawer List View
-        //mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //mDrawerList = (ListView)findViewById(R.id.navList);
-        //addDrawerItems();
 
         //MapFragment mapFragment = (MapFragment) getFragmentManager()
         //     .findFragmentById(R.id.map);
@@ -103,57 +111,57 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //start stop button click
             Button button = (Button) findViewById(R.id.button_start_stop);
             button.setOnClickListener(new View.OnClickListener() {
-              public void onClick(View v) {
-                  Toast.makeText(MapsActivity.this, "button clicked", Toast.LENGTH_SHORT).show();
-                  if (start_stop_flag == 0){
-                      start_stop_flag =1;  //start
-                      Toast.makeText(MapsActivity.this, "start", Toast.LENGTH_SHORT).show();
-                  }
-                  else {
-                      start_stop_flag =0;
-                      Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
-                  }
+                public void onClick(View v) {
+                    Toast.makeText(MapsActivity.this, "button clicked", Toast.LENGTH_SHORT).show();
+                    if (start_stop_flag == 0){
+                        start_stop_flag =1;  //start
+                        Toast.makeText(MapsActivity.this, "start", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        start_stop_flag =0;
+                        Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
+                    }
 
 
-            Toast.makeText(MapsActivity.this, "before if", Toast.LENGTH_SHORT).show();
-            if (start_stop_flag == 1) {
-                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                Toast.makeText(MapsActivity.this, "location manager", Toast.LENGTH_SHORT).show();
-                if (ActivityCompat.checkSelfPermission(MapsActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapsActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    Toast.makeText(MapsActivity.this, "before return", Toast.LENGTH_SHORT).show();
-                    routePoints = new ArrayList<LatLng>();
+                    Toast.makeText(MapsActivity.this, "before if", Toast.LENGTH_SHORT).show();
+                    if (start_stop_flag == 1) {
+                        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                        Toast.makeText(MapsActivity.this, "location manager", Toast.LENGTH_SHORT).show();
+                        if (ActivityCompat.checkSelfPermission(MapsActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapsActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                            Toast.makeText(MapsActivity.this, "before return", Toast.LENGTH_SHORT).show();
+                            routePoints = new ArrayList<LatLng>();
 
 
-                    return;
-                }
-
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
-
-                    @Override
-                    public void onLocationChanged(Location location) {
-                        // TODO Auto-generated method stub
-                        //Toast.makeText(MapsActivity.this, "onLocationChanged1", Toast.LENGTH_SHORT).show();
-                        new_lat = location.getLatitude();
-                        new_lng = location.getLongitude();
-
-                        //point to current location
-                        here = new LatLng(location.getLatitude(), location.getLongitude());
-
-                        if (firstPoint_flag == 0) {
-                            Marker m = mMap.addMarker(new MarkerOptions().position(here).title("Here"));
-                            prev_lat = new_lat;
-                            prev_lng = new_lng;
-                            firstPoint_flag = 1;
+                            return;
                         }
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(here, 17));
-                        //draw trail
+
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+
+                            @Override
+                            public void onLocationChanged(Location location) {
+                                // TODO Auto-generated method stub
+                                //Toast.makeText(MapsActivity.this, "onLocationChanged1", Toast.LENGTH_SHORT).show();
+                                new_lat = location.getLatitude();
+                                new_lng = location.getLongitude();
+
+                                //point to current location
+                                here = new LatLng(location.getLatitude(), location.getLongitude());
+
+                                if (firstPoint_flag == 0) {
+                                    Marker m = mMap.addMarker(new MarkerOptions().position(here).title("Here"));
+                                    prev_lat = new_lat;
+                                    prev_lng = new_lng;
+                                    firstPoint_flag = 1;
+                                }
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(here, 17));
+                                //draw trail
                     /*for (int z = 0; z < routePoints.size(); z++) {
                         LatLng point = routePoints.get(z);
                         pOptions.add(point);
@@ -161,61 +169,62 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     //line = googleMap.addPolyline(pOptions);
                     line = mMap.addPolyline(pOptions);
                     routePoints.add(here);*/
-                        PolylineOptions options = new PolylineOptions();
-                        options.add(new LatLng(prev_lat, prev_lng));
-                        options.add(new LatLng(new_lat, new_lng));
-                        options.width(15);
-                        options.color(Color.YELLOW);
-                        mMap.addPolyline(options);
-                        prev_lat = new_lat;
-                        prev_lng = new_lng;
+                                PolylineOptions options = new PolylineOptions();
+                                options.add(new LatLng(prev_lat, prev_lng));
+                                options.add(new LatLng(new_lat, new_lng));
+                                options.width(15);
+                                options.color(Color.YELLOW);
+                                mMap.addPolyline(options);
+                                prev_lat = new_lat;
+                                prev_lng = new_lng;
 
+                            }
+
+                            @Override
+                            public void onProviderDisabled(String provider) {
+                                // TODO Auto-generated method stub
+                            }
+
+                            @Override
+                            public void onProviderEnabled(String provider) {
+                                // TODO Auto-generated method stub
+                            }
+
+                            @Override
+                            public void onStatusChanged(String provider, int status,
+                                                        Bundle extras) {
+                                // TODO Auto-generated method stub
+                            }
+
+                        });
                     }
+                }
+            });
 
-                    @Override
-                    public void onProviderDisabled(String provider) {
-                        // TODO Auto-generated method stub
-                    }
-
-                    @Override
-                    public void onProviderEnabled(String provider) {
-                        // TODO Auto-generated method stub
-                    }
-
-                    @Override
-                    public void onStatusChanged(String provider, int status,
-                                                Bundle extras) {
-                        // TODO Auto-generated method stub
-                    }
-
-                });
-
-            }
-              }
+            ImageButton tripButton = (ImageButton) findViewById(R.id.toTripLog);
+            tripButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MapsActivity.this, "trip button", Toast.LENGTH_SHORT).show();
+                }
+            });
+            ImageButton statsButton = (ImageButton) findViewById(R.id.toStatistics);
+            statsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MapsActivity.this, "stats button", Toast.LENGTH_SHORT).show();
+                }
             });
 
         }
     }
 
-    /**
-     * Temporary addition of nav drawer items
-     * will be replaced with activities in drawer content xml.
-     */
-    private void addDrawerItems() {
-        String[] osArray = { "Workout Log", "Statistics"};
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
-        mDrawerList.setAdapter(mAdapter);
-
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MapsActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_maps, menu);
+        return true;
     }
-
-
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -240,33 +249,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     protected boolean isRouteDisplayed()
     {
-        return true;
-    }
-
-
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        Toast.makeText(getApplicationContext(),
-                "YOU TOUCHED THE NAV DRAWER", Toast.LENGTH_LONG).show();
-        Toast.makeText(getApplicationContext(),
-                item.toString(), Toast.LENGTH_LONG).show();
-
-        if (id == R.id.Trip_Log) {
-            Toast.makeText(getApplicationContext(),
-                    "TRIP LOG", Toast.LENGTH_LONG).show();
-            Intent tlActivity= new Intent(this, TripLog.class);
-            startActivity(tlActivity);
-            return true;
-        } else if (id == R.id.Statistics) {
-            Toast.makeText(getApplicationContext(),
-                    "Statistics", Toast.LENGTH_LONG).show();
-            Intent sActivity= new Intent(this, Statistics.class);
-            startActivity(sActivity);
-            return true;
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
