@@ -112,13 +112,13 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Trip Log"
         android:id="@+id/tripLogText"
-        android:layout_marginRight="45dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginEnd="48dp"
         android:textSize="10dp"
         android:textColor="@color/White"
-        android:layout_alignTop="@+id/statisticsText"
-        android:layout_alignRight="@+id/textView_duration"
-        android:layout_alignEnd="@+id/textView_duration" />
+        android:layout_above="@+id/map"
+        android:layout_toLeftOf="@+id/toStatistics"
+        android:layout_toStartOf="@+id/toStatistics" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -129,10 +129,8 @@
         android:textSize="10dp"
         android:textColor="@color/White"
         android:layout_above="@+id/map"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="7dp"
-        android:layout_marginEnd="7dp" />
+        android:layout_alignRight="@+id/textView_duration"
+        android:layout_alignEnd="@+id/textView_duration" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -157,9 +155,8 @@
         android:showAsAction="always"
         android:background="@android:color/transparent"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/tripLogText"
-        android:layout_alignStart="@+id/tripLogText"
-        android:layout_marginTop="2dp" />
+        android:layout_alignRight="@+id/tripLogText"
+        android:layout_alignStart="@+id/tripLogText" />
 
 
     <!--
