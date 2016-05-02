@@ -121,20 +121,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                       start_stop_flag =0;
                       Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
                   }
-            ImageButton tripButton = (ImageButton) findViewById(R.id.toTripLog);
-            tripButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MapsActivity.this, "trip button", Toast.LENGTH_SHORT).show();
-                }
-            });
-            ImageButton statsButton = (ImageButton) findViewById(R.id.toStatistics);
-            statsButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MapsActivity.this, "stats button", Toast.LENGTH_SHORT).show();
-                }
-            });
 
 
             Toast.makeText(MapsActivity.this, "before if", Toast.LENGTH_SHORT).show();
@@ -211,9 +197,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
 
                 });
-
             }
               }
+            });
+
+            ImageButton tripButton = (ImageButton) findViewById(R.id.toTripLog);
+            tripButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MapsActivity.this, "trip button", Toast.LENGTH_SHORT).show();
+                }
+            });
+            ImageButton statsButton = (ImageButton) findViewById(R.id.toStatistics);
+            statsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MapsActivity.this, "stats button", Toast.LENGTH_SHORT).show();
+                }
             });
 
         }

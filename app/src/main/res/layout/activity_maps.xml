@@ -158,7 +158,8 @@
         android:background="@android:color/transparent"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/tripLogText"
-        android:layout_alignStart="@+id/tripLogText" />
+        android:layout_alignStart="@+id/tripLogText"
+        android:layout_marginTop="2dp" />
 
 
     <!--
