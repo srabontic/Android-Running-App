@@ -111,57 +111,57 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //start stop button click
             Button button = (Button) findViewById(R.id.button_start_stop);
             button.setOnClickListener(new View.OnClickListener() {
-              public void onClick(View v) {
-                  Toast.makeText(MapsActivity.this, "button clicked", Toast.LENGTH_SHORT).show();
-                  if (start_stop_flag == 0){
-                      start_stop_flag =1;  //start
-                      Toast.makeText(MapsActivity.this, "start", Toast.LENGTH_SHORT).show();
-                  }
-                  else {
-                      start_stop_flag =0;
-                      Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
-                  }
+                public void onClick(View v) {
+                    Toast.makeText(MapsActivity.this, "button clicked", Toast.LENGTH_SHORT).show();
+                    if (start_stop_flag == 0){
+                        start_stop_flag =1;  //start
+                        Toast.makeText(MapsActivity.this, "start", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        start_stop_flag =0;
+                        Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
+                    }
 
 
-            Toast.makeText(MapsActivity.this, "before if", Toast.LENGTH_SHORT).show();
-            if (start_stop_flag == 1) {
-                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                Toast.makeText(MapsActivity.this, "location manager", Toast.LENGTH_SHORT).show();
-                if (ActivityCompat.checkSelfPermission(MapsActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapsActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    Toast.makeText(MapsActivity.this, "before return", Toast.LENGTH_SHORT).show();
-                    routePoints = new ArrayList<LatLng>();
+                    Toast.makeText(MapsActivity.this, "before if", Toast.LENGTH_SHORT).show();
+                    if (start_stop_flag == 1) {
+                        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                        Toast.makeText(MapsActivity.this, "location manager", Toast.LENGTH_SHORT).show();
+                        if (ActivityCompat.checkSelfPermission(MapsActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MapsActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                            Toast.makeText(MapsActivity.this, "before return", Toast.LENGTH_SHORT).show();
+                            routePoints = new ArrayList<LatLng>();
 
 
-                    return;
-                }
-
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
-
-                    @Override
-                    public void onLocationChanged(Location location) {
-                        // TODO Auto-generated method stub
-                        //Toast.makeText(MapsActivity.this, "onLocationChanged1", Toast.LENGTH_SHORT).show();
-                        new_lat = location.getLatitude();
-                        new_lng = location.getLongitude();
-
-                        //point to current location
-                        here = new LatLng(location.getLatitude(), location.getLongitude());
-
-                        if (firstPoint_flag == 0) {
-                            Marker m = mMap.addMarker(new MarkerOptions().position(here).title("Here"));
-                            prev_lat = new_lat;
-                            prev_lng = new_lng;
-                            firstPoint_flag = 1;
+                            return;
                         }
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(here, 17));
-                        //draw trail
+
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+
+                            @Override
+                            public void onLocationChanged(Location location) {
+                                // TODO Auto-generated method stub
+                                //Toast.makeText(MapsActivity.this, "onLocationChanged1", Toast.LENGTH_SHORT).show();
+                                new_lat = location.getLatitude();
+                                new_lng = location.getLongitude();
+
+                                //point to current location
+                                here = new LatLng(location.getLatitude(), location.getLongitude());
+
+                                if (firstPoint_flag == 0) {
+                                    Marker m = mMap.addMarker(new MarkerOptions().position(here).title("Here"));
+                                    prev_lat = new_lat;
+                                    prev_lng = new_lng;
+                                    firstPoint_flag = 1;
+                                }
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(here, 17));
+                                //draw trail
                     /*for (int z = 0; z < routePoints.size(); z++) {
                         LatLng point = routePoints.get(z);
                         pOptions.add(point);
@@ -169,36 +169,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     //line = googleMap.addPolyline(pOptions);
                     line = mMap.addPolyline(pOptions);
                     routePoints.add(here);*/
-                        PolylineOptions options = new PolylineOptions();
-                        options.add(new LatLng(prev_lat, prev_lng));
-                        options.add(new LatLng(new_lat, new_lng));
-                        options.width(15);
-                        options.color(Color.YELLOW);
-                        mMap.addPolyline(options);
-                        prev_lat = new_lat;
-                        prev_lng = new_lng;
+                                PolylineOptions options = new PolylineOptions();
+                                options.add(new LatLng(prev_lat, prev_lng));
+                                options.add(new LatLng(new_lat, new_lng));
+                                options.width(15);
+                                options.color(Color.YELLOW);
+                                mMap.addPolyline(options);
+                                prev_lat = new_lat;
+                                prev_lng = new_lng;
 
+                            }
+
+                            @Override
+                            public void onProviderDisabled(String provider) {
+                                // TODO Auto-generated method stub
+                            }
+
+                            @Override
+                            public void onProviderEnabled(String provider) {
+                                // TODO Auto-generated method stub
+                            }
+
+                            @Override
+                            public void onStatusChanged(String provider, int status,
+                                                        Bundle extras) {
+                                // TODO Auto-generated method stub
+                            }
+
+                        });
                     }
-
-                    @Override
-                    public void onProviderDisabled(String provider) {
-                        // TODO Auto-generated method stub
-                    }
-
-                    @Override
-                    public void onProviderEnabled(String provider) {
-                        // TODO Auto-generated method stub
-                    }
-
-                    @Override
-                    public void onStatusChanged(String provider, int status,
-                                                Bundle extras) {
-                        // TODO Auto-generated method stub
-                    }
-
-                });
-            }
-              }
+                }
             });
 
             ImageButton tripButton = (ImageButton) findViewById(R.id.toTripLog);
