@@ -7,6 +7,140 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/shadow"
     tools:context="com.example.user.demo_gps.Statistics">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/statistics"
+        android:statusBarColor="@color/text_background">
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/statisticsImage"
+        android:src="@drawable/ic_timeline_white_48dp"
+        android:layout_alignBottom="@+id/tripView"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/statistics"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Total Distance"
+        android:id="@+id/totalDistance"
+        android:layout_below="@+id/statisticsImage"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Total Time Travelled"
+        android:id="@+id/totalTimeTravelled"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/totalDistanceValue"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Average Pace"
+        android:id="@+id/avgPace"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/totalTimeTravelledValue"
+        android:layout_alignRight="@+id/totalDistance"
+        android:layout_alignEnd="@+id/totalDistance"
+        android:textColor="@color/White"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Average Speed"
+        android:id="@+id/avgSpeed"
+        android:layout_below="@+id/avgPace"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:textColor="@color/White"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Total Steps Taken"
+        android:id="@+id/totalSteps"
+        android:layout_below="@+id/avgSpeed"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:textColor="@color/White"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="distance"
+        android:id="@+id/totalDistanceValue"
+        android:layout_below="@+id/totalDistance"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="time"
+        android:id="@+id/totalTimeTravelledValue"
+        android:layout_below="@+id/totalTimeTravelled"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="pace"
+        android:id="@+id/avgPaceValue"
+        android:textColor="@color/White"
+        android:textStyle="bold"
+        android:layout_below="@+id/avgPace"
+        android:layout_alignLeft="@+id/totalDistanceValue"
+        android:layout_alignStart="@+id/totalDistanceValue" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="speed"
+        android:id="@+id/avgSpeedValue"
+        android:layout_below="@+id/avgSpeed"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="steps"
+        android:id="@+id/totalStepsValue"
+        android:layout_below="@+id/totalSteps"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:textStyle="bold"/>
 
 </RelativeLayout>

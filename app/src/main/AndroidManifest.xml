@@ -50,8 +50,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TripLog" />
-        <activity android:name=".Statistics"></activity>
+        <activity android:name=".TripLog"
+            android:label="Trip Log"/>
+        <activity android:name=".Statistics"
+            android:label="Statistics"/>
+        <activity android:name=".TripView"
+            android:label="Trip View"/>
     </application>
+
+    <!--
+    <uses-feature
+        android:name="@string/step_detector" android:required="false"/>
+    <uses-feature
+        android:name="@string/step_counter" android:required="false"/>  -->
+
 
 </manifest>

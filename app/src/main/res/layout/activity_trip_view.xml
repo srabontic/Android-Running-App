@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shadow"
+    tools:context="com.example.user.demo_gps.TripLog">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/tripViewToolbar"
+        android:title="Trip View"
+        android:statusBarColor="@color/text_background">
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tripViewToolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/barChartImage"
+            android:src="@drawable/barchart"
+            android:layout_gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/tripViewTitleDate" />
+
+        <TextView
+            android:id="@+id/tripViewDuration"
+            android:textColor="@color/White"
+            android:background="@color/text_background"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_width="330dp"
+            android:layout_height="30dp"
+            android:layout_above="@+id/tripViewDistance"
+            android:layout_alignLeft="@+id/tripViewDistance"
+            android:layout_alignStart="@+id/tripViewDistance"
+            android:layout_marginBottom="29dp" />
+        <TextView
+            android:id="@+id/tripViewDistance"
+            android:textColor="@color/White"
+            android:background="@color/text_background"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_width="330dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="40dp"
+            android:layout_above="@+id/tripViewAvgSpeed"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tripViewAvgSpeed"
+            android:textColor="@color/White"
+            android:background="@color/text_background"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_width="330dp"
+            android:layout_height="30dp"
+            android:layout_above="@+id/tripViewNumSteps"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp" />
+        <TextView
+            android:id="@+id/tripViewNumSteps"
+            android:textColor="@color/White"
+            android:background="@color/text_background"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_width="330dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="64dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tripViewTitleDate"
+            android:textColor="@color/White"
+            android:background="@color/text_background"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_width="330dp"
+            android:layout_height="30dp"
+            android:layout_above="@+id/tripViewDuration"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp" />
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:id="@+id/deleteButton"
+        android:src="@drawable/ic_delete_forever_white_48dp"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

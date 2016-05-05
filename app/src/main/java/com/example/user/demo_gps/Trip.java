@@ -19,7 +19,6 @@ public class Trip {
         this.dateOfTrip = dateOfTrip;
     }
 
-    /********Created By: Srabonti Chakraborty**************/
     public Trip(){
         this.duration = "00:00:00";
         this.distance = "0.000";

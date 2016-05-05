@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/text_background">
+
 
     <ImageView
         android:layout_width="wrap_content"
@@ -9,39 +11,43 @@
         android:id="@+id/tripLogIcon"
         android:src="@drawable/ic_directions_run_white_48dp"
         android:layout_alignParentTop="true"
-        android:layout_alignBottom="@+id/time" />
+        android:layout_alignBottom="@+id/txttime" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:textColor="#000000"
-        android:id="@+id/distance"
-        android:layout_toRightOf="@+id/tripLogIcon"
-        android:layout_toEndOf="@+id/tripLogIcon" />
+        android:text="Distance"
+        android:textColor="@color/White"
+        android:id="@+id/txtdistance"
+        android:layout_marginLeft="50dp"
+        android:maxLength="8"/>
+        android:layout_alignStart="@+id/tripLogIcon"
+        android:layout_alignLeft="@+id/tripLogIcon" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:textColor="#000000"
-        android:id="@+id/time"
-        android:layout_toRightOf="@+id/tripLogIcon"
-        android:layout_below="@id/distance" />
+        android:text="Time"
+        android:textColor="@color/White"
+        android:id="@+id/txttime"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/txtdistance" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#000000"
-        android:text="Small Text"
-        android:id="@+id/date"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"/>
-
-
-
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/White"
+        android:text="Date"
+        android:id="@+id/txtdate"
+        android:layout_marginLeft="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toLeftOf="@+id/txttime" />
 
 </RelativeLayout>
